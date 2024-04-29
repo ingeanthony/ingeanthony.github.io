@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suma de Factoriales de Dígitos</title>
+</head>
+<body>
+    <h1>Calculadora de Suma de Factoriales de Dígitos</h1>
+    <p>Ingrese un número:</p>
+    <input type="text" id="numeroInput">
+    <button onclick="calcularSumaFactoriales()">Calcular</button>
+    <p id="resultado"></p>
+
+    <script>
+        // Función para calcular el factorial de un número
+        function factorial(n) {
+            let result = 1;
+            for (let i = 2; i <= n; i++) {
+                result *= i;
+            }
+            return result;
+        }
+
+        // Función para calcular la suma de los factoriales de los dígitos de un número
+        function sumaFactorialesDigitos(numero) {
+            let suma = 0;
+            while (numero > 0) {
+                let digito = numero % 10;
+                suma += factorial(digito);
+                numero = Math.floor(numero / 10);
+            }
+            return suma;
+        }
+
+        // Función para manejar el evento de clic en el botón "Calcular"
+        function calcularSumaFactoriales() {
+            let numero = parseInt(document.getElementById("numeroInput").value);
+            let sumaFactoriales = sumaFactorialesDigitos(numero);
+            document.getElementById("resultado").textContent = "La suma de los factoriales de los dígitos de " + numero + " es " + sumaFactoriales;
+        }
+    </script>
+</body>
+</html>
